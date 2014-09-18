@@ -13,6 +13,7 @@ import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
@@ -80,7 +81,20 @@ public class ItemCreator {
 		frmRpcoreItemCreator = new JFrame();
 		frmRpcoreItemCreator.setTitle("RP-Core Item Creator v1.0");
 		frmRpcoreItemCreator.setBounds(100, 100, 761, 626);
-		frmRpcoreItemCreator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmRpcoreItemCreator.addWindowListener(new java.awt.event.WindowAdapter(){
+			@Override
+			public void windowClosing(java.awt.event.WindowEvent event){
+				if(JOptionPane.showConfirmDialog(frmRpcoreItemCreator,
+					"Would You Like to Save First?",
+					"Save?",JOptionPane.YES_NO_OPTION,
+					JOptionPane.QUESTION_MESSAGE)==JOptionPane.YES_OPTION){
+					try{Strings.saveFile();}catch(Exception e){}
+					System.exit(0);
+				}else{
+					System.exit(0);
+				}
+			}
+		});
 		frmRpcoreItemCreator.getContentPane().setLayout(null);
 		
 		listCreated = new JList<Object>(Strings.model);
@@ -317,22 +331,30 @@ public class ItemCreator {
 		JMenu mnFile = new JMenu("File");
 		menuBar.add(mnFile);
 		
-		JMenuItem mntmNew = new JMenuItem("New");
-		mnFile.add(mntmNew);
-		
-		JMenuItem mntmOpen = new JMenuItem("Open");
-		mnFile.add(mntmOpen);
-		
-		JMenuItem mntmSave = new JMenuItem("Save");
-		mnFile.add(mntmSave);
-		
 		JMenuItem mntmExit = new JMenuItem("Exit");
+		mntmExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int dialogButton = JOptionPane.YES_NO_OPTION;
+				int dialogResult = JOptionPane.showConfirmDialog(null, "Would You Like to Save First?","Warning",dialogButton);
+				if(dialogResult==0){
+					try{Strings.saveFile();}catch(Exception ex){}
+					System.exit(0);
+				}else{
+				 System.exit(0);
+				}
+			}
+		});
 		mnFile.add(mntmExit);
 		
 		JMenu mnAbout = new JMenu("About");
 		menuBar.add(mnAbout);
 		
 		JMenuItem mntmInformation = new JMenuItem("Information");
+		mntmInformation.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null,Strings.information,"About QuestGUI",JOptionPane.NO_OPTION);
+			}
+		});
 		mnAbout.add(mntmInformation);
 	}
 }

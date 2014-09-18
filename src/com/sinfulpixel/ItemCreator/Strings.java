@@ -17,6 +17,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 public class Strings {
 	public static String[] stations = {"Leather Working", "Forge", "Campfire", "Anvil", "Stove", "Inventory", "Carpentry"};
 	public static String[] tools = {"Knife", "Forge Hammer", "Saw"};
+	public static String information = "Author: Brandon H\nCurrent Version: 1.0\nFor use with RP-Core Plugin.";
 	public static List<String> materials = new ArrayList<>();
 	@SuppressWarnings("rawtypes")
 	public static DefaultListModel model = new DefaultListModel();
