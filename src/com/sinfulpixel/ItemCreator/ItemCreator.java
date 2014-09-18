@@ -1,26 +1,23 @@
 package com.sinfulpixel.ItemCreator;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JList;
-import javax.swing.JScrollBar;
 import javax.swing.JLabel;
-import javax.swing.JMenuBar;
+import javax.swing.JList;
 import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
-
-import java.awt.Color;
-
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JSeparator;
-import javax.swing.JButton;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class ItemCreator {
 
@@ -39,14 +36,15 @@ public class ItemCreator {
 	public static JTextField txtMat5Amnt;
 	public static JTextField txtLow;
 	public static JTextField txtHigh;
-	public static JComboBox cbItem;
-	public static JComboBox cbMat1;
-	public static JComboBox cbMat2;
-	public static JComboBox cbMat3;
-	public static JComboBox cbMat4;
-	public static JComboBox cbMat5;
-	public static JComboBox cbToolReq;
-	public static JComboBox cbStation;
+	public static JComboBox<?> cbItem;
+	public static JComboBox<?> cbMat1;
+	public static JComboBox<?> cbMat2;
+	public static JComboBox<?> cbMat3;
+	public static JComboBox<?> cbMat4;
+	public static JComboBox<?> cbMat5;
+	public static JComboBox<?> cbToolReq;
+	public static JComboBox<?> cbStation;
+	public static JList<?> listCreated;
 
 	/**
 	 * Launch the application.
@@ -58,6 +56,7 @@ public class ItemCreator {
 					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 					Strings.popMaterials();
 					Strings.createFile();
+					Strings.popItems();
 					ItemCreator window = new ItemCreator();
 					window.frmRpcoreItemCreator.setVisible(true);
 				} catch (Exception e) {
@@ -82,10 +81,23 @@ public class ItemCreator {
 		frmRpcoreItemCreator = new JFrame();
 		frmRpcoreItemCreator.setTitle("RP-Core Item Creator v1.0");
 		frmRpcoreItemCreator.setBounds(100, 100, 761, 626);
-		frmRpcoreItemCreator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmRpcoreItemCreator.addWindowListener(new java.awt.event.WindowAdapter(){
+			@Override
+			public void windowClosing(java.awt.event.WindowEvent event){
+				if(JOptionPane.showConfirmDialog(frmRpcoreItemCreator,
+					"Would You Like to Save First?",
+					"Save?",JOptionPane.YES_NO_OPTION,
+					JOptionPane.QUESTION_MESSAGE)==JOptionPane.YES_OPTION){
+					try{Strings.saveFile();}catch(Exception e){}
+					System.exit(0);
+				}else{
+					System.exit(0);
+				}
+			}
+		});
 		frmRpcoreItemCreator.getContentPane().setLayout(null);
 		
-		JList listCreated = new JList();
+		listCreated = new JList<Object>(Strings.model);
 		listCreated.setBorder(new LineBorder(new Color(0, 0, 0)));
 		listCreated.setBounds(482, 38, 254, 522);
 		frmRpcoreItemCreator.getContentPane().add(listCreated);
@@ -116,7 +128,7 @@ public class ItemCreator {
 		lblItemMaterial.setBounds(10, 90, 93, 14);
 		frmRpcoreItemCreator.getContentPane().add(lblItemMaterial);
 		
-		cbItem = new JComboBox(Strings.materials.toArray());
+		cbItem = new JComboBox<Object>(Strings.materials.toArray());
 		cbItem.setBounds(147, 87, 194, 20);
 		frmRpcoreItemCreator.getContentPane().add(cbItem);
 		
@@ -132,7 +144,7 @@ public class ItemCreator {
 		lblMaterial.setBounds(10, 147, 93, 14);
 		frmRpcoreItemCreator.getContentPane().add(lblMaterial);
 		
-		cbMat1 = new JComboBox(Strings.materials.toArray());
+		cbMat1 = new JComboBox<Object>(Strings.materials.toArray());
 		cbMat1.setBounds(147, 144, 194, 20);
 		frmRpcoreItemCreator.getContentPane().add(cbMat1);
 		
@@ -140,7 +152,7 @@ public class ItemCreator {
 		lblMaterial_1.setBounds(10, 200, 93, 14);
 		frmRpcoreItemCreator.getContentPane().add(lblMaterial_1);
 		
-		cbMat2 = new JComboBox(Strings.materials.toArray());
+		cbMat2 = new JComboBox<Object>(Strings.materials.toArray());
 		cbMat2.setBounds(147, 197, 194, 20);
 		frmRpcoreItemCreator.getContentPane().add(cbMat2);
 		
@@ -148,7 +160,7 @@ public class ItemCreator {
 		lblMaterial_2.setBounds(10, 253, 93, 14);
 		frmRpcoreItemCreator.getContentPane().add(lblMaterial_2);
 		
-		cbMat3 = new JComboBox(Strings.materials.toArray());
+		cbMat3 = new JComboBox<Object>(Strings.materials.toArray());
 		cbMat3.setBounds(147, 250, 194, 20);
 		frmRpcoreItemCreator.getContentPane().add(cbMat3);
 		
@@ -156,7 +168,7 @@ public class ItemCreator {
 		lblMaterial_3.setBounds(10, 309, 93, 14);
 		frmRpcoreItemCreator.getContentPane().add(lblMaterial_3);
 		
-		cbMat4 = new JComboBox(Strings.materials.toArray());
+		cbMat4 = new JComboBox<Object>(Strings.materials.toArray());
 		cbMat4.setBounds(147, 306, 194, 20);
 		frmRpcoreItemCreator.getContentPane().add(cbMat4);
 		
@@ -164,7 +176,7 @@ public class ItemCreator {
 		lblMaterial_4.setBounds(10, 365, 93, 14);
 		frmRpcoreItemCreator.getContentPane().add(lblMaterial_4);
 		
-		cbMat5 = new JComboBox(Strings.materials.toArray());
+		cbMat5 = new JComboBox<Object>(Strings.materials.toArray());
 		cbMat5.setBounds(147, 362, 194, 20);
 		frmRpcoreItemCreator.getContentPane().add(cbMat5);
 		
@@ -274,7 +286,7 @@ public class ItemCreator {
 		lblWorkstation.setBounds(10, 446, 93, 14);
 		frmRpcoreItemCreator.getContentPane().add(lblWorkstation);
 		
-		cbStation = new JComboBox(Strings.stations);
+		cbStation = new JComboBox<Object>(Strings.stations);
 		cbStation.setBounds(147, 443, 194, 20);
 		frmRpcoreItemCreator.getContentPane().add(cbStation);
 		
@@ -299,7 +311,7 @@ public class ItemCreator {
 		JButton btnCreateItem = new JButton("Create Item");
 		btnCreateItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//Button Clicked
+				try{Strings.saveFile();Strings.popItems();}catch(Exception e){e.printStackTrace();}
 			}
 		});
 		btnCreateItem.setBounds(147, 527, 114, 23);
@@ -309,7 +321,7 @@ public class ItemCreator {
 		lblToolRequired.setBounds(10, 471, 93, 14);
 		frmRpcoreItemCreator.getContentPane().add(lblToolRequired);
 		
-		cbToolReq = new JComboBox();
+		cbToolReq = new JComboBox<Object>(Strings.tools);
 		cbToolReq.setBounds(147, 468, 194, 20);
 		frmRpcoreItemCreator.getContentPane().add(cbToolReq);
 		
@@ -319,22 +331,30 @@ public class ItemCreator {
 		JMenu mnFile = new JMenu("File");
 		menuBar.add(mnFile);
 		
-		JMenuItem mntmNew = new JMenuItem("New");
-		mnFile.add(mntmNew);
-		
-		JMenuItem mntmOpen = new JMenuItem("Open");
-		mnFile.add(mntmOpen);
-		
-		JMenuItem mntmSave = new JMenuItem("Save");
-		mnFile.add(mntmSave);
-		
 		JMenuItem mntmExit = new JMenuItem("Exit");
+		mntmExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int dialogButton = JOptionPane.YES_NO_OPTION;
+				int dialogResult = JOptionPane.showConfirmDialog(null, "Would You Like to Save First?","Warning",dialogButton);
+				if(dialogResult==0){
+					try{Strings.saveFile();}catch(Exception ex){}
+					System.exit(0);
+				}else{
+				 System.exit(0);
+				}
+			}
+		});
 		mnFile.add(mntmExit);
 		
 		JMenu mnAbout = new JMenu("About");
 		menuBar.add(mnAbout);
 		
 		JMenuItem mntmInformation = new JMenuItem("Information");
+		mntmInformation.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null,Strings.information,"About QuestGUI",JOptionPane.NO_OPTION);
+			}
+		});
 		mnAbout.add(mntmInformation);
 	}
 }

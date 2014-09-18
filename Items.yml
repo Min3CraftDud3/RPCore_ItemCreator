@@ -1,1 +1,40 @@
-ItemFile: ==== [Item File] ====
+ItemFile:
+  Leather Strips:
+    Name: Leather Strips
+    Desc: Thin strips of leather used to make weapons.
+    Texture: STRING
+    Mat1: LEATHER
+    Mat1Name: Tanned Leather
+    Mat1Amnt: '1'
+    Mat2Name: ''
+    Mat2Amnt: ''
+    Mat3Name: ''
+    Mat3Amnt: ''
+    Mat4Name: ''
+    Mat4Amnt: ''
+    Mat5Name: ''
+    Mat5Amnt: ''
+    ChanceHigh: '3'
+    ChanceLow: '1'
+    WorkStation: Leather Working
+    Tool: Knife
+  Tanned Leather:
+    Name: Tanned Leather
+    Desc: A piece of Tanned Leather
+    Texture: LEATHER
+    Mat1: LEATHER
+    Mat1Name: Leather
+    Mat1Amnt: '1'
+    Mat2: (none)
+    Mat2Name: ''
+    Mat2Amnt: ''
+    Mat3Name: ''
+    Mat3Amnt: ''
+    Mat4Name: ''
+    Mat4Amnt: ''
+    Mat5Name: ''
+    Mat5Amnt: ''
+    ChanceHigh: '44'
+    ChanceLow: '14'
+    WorkStation: Leather Working
+    Tool: Knife
