@@ -4,5 +4,6 @@ RPCore_ItemCreator
 
 ###To-Do
 * ~~Create YML~~
-* Link save to YML
-* Link button to save
+* ~~Link save to YML~~
+* ~~Link button to save~~
+* Populate form on JList click [For Editing Items]
