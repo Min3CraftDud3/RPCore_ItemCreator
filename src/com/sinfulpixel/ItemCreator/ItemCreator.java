@@ -98,11 +98,11 @@ public class ItemCreator {
 			}
 		});
 		frmRpcoreItemCreator.getContentPane().setLayout(null);
-		
 		listCreated = new JList<Object>(Strings.model);
 		listCreated.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
-				Strings.popForm(listCreated.getSelectedValue().toString());
+				Strings.clearForm();
+				try{Strings.popForm(listCreated.getSelectedValue().toString());}catch(Exception e){}
 			}
 		});
 		listCreated.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -318,7 +318,7 @@ public class ItemCreator {
 		JButton btnCreateItem = new JButton("Create Item");
 		btnCreateItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				try{Strings.saveFile();Strings.popItems();}catch(Exception e){e.printStackTrace();}
+				try{Strings.saveFile();Strings.popItems();Strings.clearForm();}catch(Exception e){e.printStackTrace();}
 			}
 		});
 		btnCreateItem.setBounds(147, 527, 114, 23);
