@@ -106,12 +106,13 @@ public class Strings {
 		if(itemFile.exists()){
 			model.clear();
 		    FileConfiguration fc = YamlConfiguration.loadConfiguration(itemFile);
-		    Set<String> ex = fc.getConfigurationSection("ItemFile").getKeys(false); 
+		    try{Set<String> ex = fc.getConfigurationSection("ItemFile").getKeys(false); 
 		    String[] s = ex.toArray(new String[ex.size()]);
 		    Arrays.sort(s);
 		    for(String t:s){
 		    	model.addElement(t);
 		    }
+		    }catch(Exception e){}
 		}
 	}
 	public static void popForm(String s){

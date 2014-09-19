@@ -83,6 +83,7 @@ public class ItemCreator {
 	@SuppressWarnings("unchecked")
 	private void initialize() {
 		frmRpcoreItemCreator = new JFrame();
+		frmRpcoreItemCreator.setResizable(false);
 		frmRpcoreItemCreator.setTitle("RP-Core Item Creator v1.0");
 		frmRpcoreItemCreator.setBounds(100, 100, 761, 681);
 		frmRpcoreItemCreator.addWindowListener(new java.awt.event.WindowAdapter(){
