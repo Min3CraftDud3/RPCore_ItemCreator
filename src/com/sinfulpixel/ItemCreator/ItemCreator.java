@@ -14,12 +14,13 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class ItemCreator {
 
@@ -49,6 +50,11 @@ public class ItemCreator {
 	public static JList<?> listCreated;
 	public static JTextField txtSkillLevel;
 	public static JComboBox<?> cbSkill;
+	public static JComboBox<?> cbCat;
+	public static JTextField txtDmgMin;
+	public static JTextField txtDmgMax;
+	public static JTextField txtProtMin;
+	public static JTextField txtProtMax;
 
 	/**
 	 * Launch the application.
@@ -84,8 +90,8 @@ public class ItemCreator {
 	private void initialize() {
 		frmRpcoreItemCreator = new JFrame();
 		frmRpcoreItemCreator.setResizable(false);
-		frmRpcoreItemCreator.setTitle("RP-Core Item Creator v1.0");
-		frmRpcoreItemCreator.setBounds(100, 100, 761, 681);
+		frmRpcoreItemCreator.setTitle("RP-Core Item Creator v1.1");
+		frmRpcoreItemCreator.setBounds(100, 100, 761, 722);
 		frmRpcoreItemCreator.addWindowListener(new java.awt.event.WindowAdapter(){
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent event){
@@ -101,6 +107,7 @@ public class ItemCreator {
 			}
 		});
 		frmRpcoreItemCreator.getContentPane().setLayout(null);
+		
 		listCreated = new JList<Object>(Strings.model);
 		listCreated.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
@@ -110,7 +117,11 @@ public class ItemCreator {
 		});
 		listCreated.setBorder(new LineBorder(new Color(0, 0, 0)));
 		listCreated.setBounds(482, 38, 254, 528);
-		frmRpcoreItemCreator.getContentPane().add(listCreated);
+		
+		JScrollPane list = new JScrollPane(listCreated);
+		list.setBounds(482, 38, 254, 528);
+		frmRpcoreItemCreator.getContentPane().add(list);
+
 		
 		JLabel lblCreatedItems = new JLabel("Created Items:");
 		lblCreatedItems.setBounds(482, 13, 122, 14);
@@ -126,162 +137,162 @@ public class ItemCreator {
 		txtName.setColumns(10);
 		
 		JLabel lblItemDescription = new JLabel("Item Description:");
-		lblItemDescription.setBounds(10, 65, 114, 14);
+		lblItemDescription.setBounds(10, 63, 114, 14);
 		frmRpcoreItemCreator.getContentPane().add(lblItemDescription);
 		
 		txtDesc = new JTextField();
 		txtDesc.setColumns(10);
-		txtDesc.setBounds(147, 62, 194, 20);
+		txtDesc.setBounds(147, 60, 194, 20);
 		frmRpcoreItemCreator.getContentPane().add(txtDesc);
 		
 		JLabel lblItemMaterial = new JLabel("Item Texture:");
-		lblItemMaterial.setBounds(10, 90, 93, 14);
+		lblItemMaterial.setBounds(10, 88, 93, 14);
 		frmRpcoreItemCreator.getContentPane().add(lblItemMaterial);
 		
 		cbItem = new JComboBox<Object>(Strings.materials.toArray());
-		cbItem.setBounds(147, 87, 194, 20);
+		cbItem.setBounds(147, 85, 194, 20);
 		frmRpcoreItemCreator.getContentPane().add(cbItem);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 115, 462, 2);
+		separator.setBounds(10, 138, 462, 2);
 		frmRpcoreItemCreator.getContentPane().add(separator);
 		
 		JLabel lblRequiredMaterialsTo = new JLabel("Required Materials to Craft Items:");
-		lblRequiredMaterialsTo.setBounds(72, 120, 216, 14);
+		lblRequiredMaterialsTo.setBounds(80, 140, 216, 14);
 		frmRpcoreItemCreator.getContentPane().add(lblRequiredMaterialsTo);
 		
 		JLabel lblMaterial = new JLabel("Material 1: ");
-		lblMaterial.setBounds(10, 147, 93, 14);
+		lblMaterial.setBounds(10, 162, 93, 14);
 		frmRpcoreItemCreator.getContentPane().add(lblMaterial);
 		
 		cbMat1 = new JComboBox<Object>(Strings.materials.toArray());
-		cbMat1.setBounds(147, 144, 194, 20);
+		cbMat1.setBounds(147, 159, 194, 20);
 		frmRpcoreItemCreator.getContentPane().add(cbMat1);
 		
 		JLabel lblMaterial_1 = new JLabel("Material 2:");
-		lblMaterial_1.setBounds(10, 200, 93, 14);
+		lblMaterial_1.setBounds(10, 215, 93, 14);
 		frmRpcoreItemCreator.getContentPane().add(lblMaterial_1);
 		
 		cbMat2 = new JComboBox<Object>(Strings.materials.toArray());
-		cbMat2.setBounds(147, 197, 194, 20);
+		cbMat2.setBounds(147, 212, 194, 20);
 		frmRpcoreItemCreator.getContentPane().add(cbMat2);
 		
 		JLabel lblMaterial_2 = new JLabel("Material 3: ");
-		lblMaterial_2.setBounds(10, 253, 93, 14);
+		lblMaterial_2.setBounds(10, 268, 93, 14);
 		frmRpcoreItemCreator.getContentPane().add(lblMaterial_2);
 		
 		cbMat3 = new JComboBox<Object>(Strings.materials.toArray());
-		cbMat3.setBounds(147, 250, 194, 20);
+		cbMat3.setBounds(147, 265, 194, 20);
 		frmRpcoreItemCreator.getContentPane().add(cbMat3);
 		
 		JLabel lblMaterial_3 = new JLabel("Material 4:");
-		lblMaterial_3.setBounds(10, 309, 93, 14);
+		lblMaterial_3.setBounds(10, 324, 93, 14);
 		frmRpcoreItemCreator.getContentPane().add(lblMaterial_3);
 		
 		cbMat4 = new JComboBox<Object>(Strings.materials.toArray());
-		cbMat4.setBounds(147, 306, 194, 20);
+		cbMat4.setBounds(147, 321, 194, 20);
 		frmRpcoreItemCreator.getContentPane().add(cbMat4);
 		
 		JLabel lblMaterial_4 = new JLabel("Material 5:");
-		lblMaterial_4.setBounds(10, 365, 93, 14);
+		lblMaterial_4.setBounds(10, 380, 93, 14);
 		frmRpcoreItemCreator.getContentPane().add(lblMaterial_4);
 		
 		cbMat5 = new JComboBox<Object>(Strings.materials.toArray());
-		cbMat5.setBounds(147, 362, 194, 20);
+		cbMat5.setBounds(147, 377, 194, 20);
 		frmRpcoreItemCreator.getContentPane().add(cbMat5);
 		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(10, 419, 462, 2);
+		separator_1.setBounds(10, 434, 462, 2);
 		frmRpcoreItemCreator.getContentPane().add(separator_1);
 		
 		JLabel lblCustomItemName = new JLabel("Custom Item Name:");
-		lblCustomItemName.setBounds(10, 172, 122, 14);
+		lblCustomItemName.setBounds(10, 187, 122, 14);
 		frmRpcoreItemCreator.getContentPane().add(lblCustomItemName);
 		
 		txtMat1Name = new JTextField();
-		txtMat1Name.setBounds(147, 169, 194, 20);
+		txtMat1Name.setBounds(147, 184, 194, 20);
 		frmRpcoreItemCreator.getContentPane().add(txtMat1Name);
 		txtMat1Name.setColumns(10);
 		
 		JLabel lblAmount = new JLabel("Amount:");
-		lblAmount.setBounds(351, 150, 77, 14);
+		lblAmount.setBounds(351, 165, 77, 14);
 		frmRpcoreItemCreator.getContentPane().add(lblAmount);
 		
 		txtMat1Amnt = new JTextField();
-		txtMat1Amnt.setBounds(408, 147, 56, 20);
+		txtMat1Amnt.setBounds(408, 162, 56, 20);
 		frmRpcoreItemCreator.getContentPane().add(txtMat1Amnt);
 		txtMat1Amnt.setColumns(10);
 		
 		JLabel label = new JLabel("Custom Item Name:");
-		label.setBounds(10, 225, 122, 14);
+		label.setBounds(10, 240, 122, 14);
 		frmRpcoreItemCreator.getContentPane().add(label);
 		
 		txtMat2Name = new JTextField();
 		txtMat2Name.setColumns(10);
-		txtMat2Name.setBounds(147, 222, 194, 20);
+		txtMat2Name.setBounds(147, 237, 194, 20);
 		frmRpcoreItemCreator.getContentPane().add(txtMat2Name);
 		
 		JLabel label_1 = new JLabel("Amount:");
-		label_1.setBounds(351, 256, 77, 14);
+		label_1.setBounds(351, 271, 77, 14);
 		frmRpcoreItemCreator.getContentPane().add(label_1);
 		
 		txtMat3Amnt = new JTextField();
 		txtMat3Amnt.setColumns(10);
-		txtMat3Amnt.setBounds(408, 253, 56, 20);
+		txtMat3Amnt.setBounds(408, 268, 56, 20);
 		frmRpcoreItemCreator.getContentPane().add(txtMat3Amnt);
 		
 		JLabel label_2 = new JLabel("Custom Item Name:");
-		label_2.setBounds(10, 281, 122, 14);
+		label_2.setBounds(10, 296, 122, 14);
 		frmRpcoreItemCreator.getContentPane().add(label_2);
 		
 		txtMat3Name = new JTextField();
 		txtMat3Name.setColumns(10);
-		txtMat3Name.setBounds(147, 278, 194, 20);
+		txtMat3Name.setBounds(147, 293, 194, 20);
 		frmRpcoreItemCreator.getContentPane().add(txtMat3Name);
 		
 		JLabel label_3 = new JLabel("Amount:");
-		label_3.setBounds(351, 203, 77, 14);
+		label_3.setBounds(351, 218, 77, 14);
 		frmRpcoreItemCreator.getContentPane().add(label_3);
 		
 		txtMat2Amnt = new JTextField();
 		txtMat2Amnt.setColumns(10);
-		txtMat2Amnt.setBounds(408, 200, 56, 20);
+		txtMat2Amnt.setBounds(408, 215, 56, 20);
 		frmRpcoreItemCreator.getContentPane().add(txtMat2Amnt);
 		
 		JLabel label_4 = new JLabel("Amount:");
-		label_4.setBounds(351, 312, 77, 14);
+		label_4.setBounds(351, 327, 77, 14);
 		frmRpcoreItemCreator.getContentPane().add(label_4);
 		
 		txtMat4Amnt = new JTextField();
 		txtMat4Amnt.setColumns(10);
-		txtMat4Amnt.setBounds(408, 309, 56, 20);
+		txtMat4Amnt.setBounds(408, 324, 56, 20);
 		frmRpcoreItemCreator.getContentPane().add(txtMat4Amnt);
 		
 		JLabel label_5 = new JLabel("Custom Item Name:");
-		label_5.setBounds(10, 337, 122, 14);
+		label_5.setBounds(10, 352, 122, 14);
 		frmRpcoreItemCreator.getContentPane().add(label_5);
 		
 		txtMat4Name = new JTextField();
 		txtMat4Name.setColumns(10);
-		txtMat4Name.setBounds(147, 334, 194, 20);
+		txtMat4Name.setBounds(147, 349, 194, 20);
 		frmRpcoreItemCreator.getContentPane().add(txtMat4Name);
 		
 		JLabel label_6 = new JLabel("Custom Item Name:");
-		label_6.setBounds(10, 391, 122, 14);
+		label_6.setBounds(10, 406, 122, 14);
 		frmRpcoreItemCreator.getContentPane().add(label_6);
 		
 		txtMat5Name = new JTextField();
 		txtMat5Name.setColumns(10);
-		txtMat5Name.setBounds(147, 388, 194, 20);
+		txtMat5Name.setBounds(147, 403, 194, 20);
 		frmRpcoreItemCreator.getContentPane().add(txtMat5Name);
 		
 		JLabel label_7 = new JLabel("Amount:");
-		label_7.setBounds(351, 368, 77, 14);
+		label_7.setBounds(351, 383, 77, 14);
 		frmRpcoreItemCreator.getContentPane().add(label_7);
 		
 		txtMat5Amnt = new JTextField();
 		txtMat5Amnt.setColumns(10);
-		txtMat5Amnt.setBounds(408, 365, 56, 20);
+		txtMat5Amnt.setBounds(408, 380, 56, 20);
 		frmRpcoreItemCreator.getContentPane().add(txtMat5Amnt);
 		
 		JLabel lblItemInformation = new JLabel("Item Information:");
@@ -289,33 +300,33 @@ public class ItemCreator {
 		frmRpcoreItemCreator.getContentPane().add(lblItemInformation);
 		
 		JLabel lblRequiredWorkstation = new JLabel("Other Information:");
-		lblRequiredWorkstation.setBounds(72, 424, 180, 14);
+		lblRequiredWorkstation.setBounds(72, 439, 180, 14);
 		frmRpcoreItemCreator.getContentPane().add(lblRequiredWorkstation);
 		
 		JLabel lblWorkstation = new JLabel("Workstation:");
-		lblWorkstation.setBounds(10, 446, 93, 14);
+		lblWorkstation.setBounds(10, 461, 93, 14);
 		frmRpcoreItemCreator.getContentPane().add(lblWorkstation);
 		
 		cbStation = new JComboBox<Object>(Strings.stations);
-		cbStation.setBounds(147, 443, 194, 20);
+		cbStation.setBounds(147, 458, 194, 20);
 		frmRpcoreItemCreator.getContentPane().add(cbStation);
 		
 		JLabel lblSpecialChance = new JLabel("Special Chance (Low/High):");
-		lblSpecialChance.setBounds(10, 502, 154, 14);
+		lblSpecialChance.setBounds(10, 514, 154, 14);
 		frmRpcoreItemCreator.getContentPane().add(lblSpecialChance);
 		
 		txtLow = new JTextField();
-		txtLow.setBounds(254, 496, 42, 20);
+		txtLow.setBounds(254, 508, 42, 20);
 		frmRpcoreItemCreator.getContentPane().add(txtLow);
 		txtLow.setColumns(10);
 		
 		JLabel label_8 = new JLabel("/");
-		label_8.setBounds(295, 499, 14, 14);
+		label_8.setBounds(295, 511, 14, 14);
 		frmRpcoreItemCreator.getContentPane().add(label_8);
 		
 		txtHigh = new JTextField();
 		txtHigh.setColumns(10);
-		txtHigh.setBounds(299, 496, 42, 20);
+		txtHigh.setBounds(299, 508, 42, 20);
 		frmRpcoreItemCreator.getContentPane().add(txtHigh);
 		
 		JButton btnCreateItem = new JButton("Create Item");
@@ -324,31 +335,31 @@ public class ItemCreator {
 				try{Strings.saveFile();Strings.popItems();Strings.clearForm();}catch(Exception e){e.printStackTrace();}
 			}
 		});
-		btnCreateItem.setBounds(147, 587, 114, 23);
+		btnCreateItem.setBounds(147, 642, 114, 23);
 		frmRpcoreItemCreator.getContentPane().add(btnCreateItem);
 		
 		JLabel lblToolRequired = new JLabel("Tool Required:");
-		lblToolRequired.setBounds(10, 471, 93, 14);
+		lblToolRequired.setBounds(10, 486, 93, 14);
 		frmRpcoreItemCreator.getContentPane().add(lblToolRequired);
 		
 		cbToolReq = new JComboBox<Object>(Strings.tools);
-		cbToolReq.setBounds(147, 468, 194, 20);
+		cbToolReq.setBounds(147, 483, 194, 20);
 		frmRpcoreItemCreator.getContentPane().add(cbToolReq);
 		
 		JLabel lblSkill = new JLabel("Skill:");
-		lblSkill.setBounds(10, 527, 93, 14);
+		lblSkill.setBounds(10, 542, 93, 14);
 		frmRpcoreItemCreator.getContentPane().add(lblSkill);
 		
 		cbSkill = new JComboBox<Object>(Strings.skills);
-		cbSkill.setBounds(147, 524, 194, 20);
+		cbSkill.setBounds(147, 536, 194, 20);
 		frmRpcoreItemCreator.getContentPane().add(cbSkill);
 		
 		JLabel lblSkillLevelReq = new JLabel("Skill Level Req:");
-		lblSkillLevelReq.setBounds(10, 552, 122, 14);
+		lblSkillLevelReq.setBounds(10, 567, 122, 14);
 		frmRpcoreItemCreator.getContentPane().add(lblSkillLevelReq);
 		
 		txtSkillLevel = new JTextField();
-		txtSkillLevel.setBounds(147, 549, 42, 20);
+		txtSkillLevel.setBounds(299, 564, 42, 20);
 		frmRpcoreItemCreator.getContentPane().add(txtSkillLevel);
 		txtSkillLevel.setColumns(10);
 		
@@ -369,8 +380,52 @@ public class ItemCreator {
 				}
 			}
 		});
-		btnDeleteItem.setBounds(561, 587, 100, 23);
+		btnDeleteItem.setBounds(563, 642, 100, 23);
 		frmRpcoreItemCreator.getContentPane().add(btnDeleteItem);
+		
+		JLabel lblItemCetegory = new JLabel("Item Cetegory:");
+		lblItemCetegory.setBounds(10, 113, 114, 14);
+		frmRpcoreItemCreator.getContentPane().add(lblItemCetegory);
+		
+		cbCat = new JComboBox<Object>(Strings.category);
+		cbCat.setBounds(147, 110, 194, 20);
+		frmRpcoreItemCreator.getContentPane().add(cbCat);
+		
+		JLabel lblDamageminmax = new JLabel("Damage(Min/Max):");
+		lblDamageminmax.setBounds(10, 592, 122, 14);
+		frmRpcoreItemCreator.getContentPane().add(lblDamageminmax);
+		
+		JLabel lblProtectionminmax = new JLabel("Protection(Min/Max):");
+		lblProtectionminmax.setBounds(10, 617, 122, 14);
+		frmRpcoreItemCreator.getContentPane().add(lblProtectionminmax);
+		
+		txtDmgMin = new JTextField();
+		txtDmgMin.setColumns(10);
+		txtDmgMin.setBounds(254, 586, 42, 20);
+		frmRpcoreItemCreator.getContentPane().add(txtDmgMin);
+		
+		JLabel label_9 = new JLabel("/");
+		label_9.setBounds(295, 589, 14, 14);
+		frmRpcoreItemCreator.getContentPane().add(label_9);
+		
+		txtDmgMax = new JTextField();
+		txtDmgMax.setColumns(10);
+		txtDmgMax.setBounds(299, 586, 42, 20);
+		frmRpcoreItemCreator.getContentPane().add(txtDmgMax);
+		
+		txtProtMin = new JTextField();
+		txtProtMin.setColumns(10);
+		txtProtMin.setBounds(254, 611, 42, 20);
+		frmRpcoreItemCreator.getContentPane().add(txtProtMin);
+		
+		JLabel label_10 = new JLabel("/");
+		label_10.setBounds(295, 614, 14, 14);
+		frmRpcoreItemCreator.getContentPane().add(label_10);
+		
+		txtProtMax = new JTextField();
+		txtProtMax.setColumns(10);
+		txtProtMax.setBounds(299, 611, 42, 20);
+		frmRpcoreItemCreator.getContentPane().add(txtProtMax);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frmRpcoreItemCreator.setJMenuBar(menuBar);
