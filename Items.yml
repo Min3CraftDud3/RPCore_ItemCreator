@@ -6,14 +6,6 @@ ItemFile:
     Mat1: LEATHER
     Mat1Name: Tanned Leather
     Mat1Amnt: '1'
-    Mat2Name: ''
-    Mat2Amnt: ''
-    Mat3Name: ''
-    Mat3Amnt: ''
-    Mat4Name: ''
-    Mat4Amnt: ''
-    Mat5Name: ''
-    Mat5Amnt: ''
     ChanceHigh: '3'
     ChanceLow: '1'
     WorkStation: Leather Working
@@ -25,16 +17,21 @@ ItemFile:
     Mat1: LEATHER
     Mat1Name: Leather
     Mat1Amnt: '1'
-    Mat2: (none)
-    Mat2Name: ''
-    Mat2Amnt: ''
-    Mat3Name: ''
-    Mat3Amnt: ''
-    Mat4Name: ''
-    Mat4Amnt: ''
-    Mat5Name: ''
-    Mat5Amnt: ''
     ChanceHigh: '44'
     ChanceLow: '14'
     WorkStation: Leather Working
     Tool: Knife
+  Boom Powder:
+    Name: Boom Powder
+    Desc: Explosive Powder
+    Texture: SULPHUR
+    Mat1: BONE
+    Mat1Name: Bone
+    Mat1Amnt: '1'
+    Mat2: SULPHUR
+    Mat2Name: Gun Powder
+    Mat2Amnt: '1'
+    ChanceHigh: '2'
+    ChanceLow: '1'
+    WorkStation: Campfire
+    Tool: Forge Hammer
