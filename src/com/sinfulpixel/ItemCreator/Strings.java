@@ -223,4 +223,15 @@ public class Strings {
 		ItemCreator.txtMat5Name.setText(null);	
 		ItemCreator.txtSkillLevel.setText(null);
 	}
+	public static void deleteItem(String s)throws IOException{
+		File itemFile = new File("Items.yml");
+		if(itemFile.exists()){
+			model.clear();
+		    FileConfiguration fc = YamlConfiguration.loadConfiguration(itemFile);
+		    if(fc.contains("ItemFile."+s)){
+		    	fc.set("ItemFile."+s, null);
+		    	fc.save(itemFile);
+		    }
+		}
+	}
 }

@@ -109,7 +109,7 @@ public class ItemCreator {
 			}
 		});
 		listCreated.setBorder(new LineBorder(new Color(0, 0, 0)));
-		listCreated.setBounds(482, 38, 254, 572);
+		listCreated.setBounds(482, 38, 254, 528);
 		frmRpcoreItemCreator.getContentPane().add(listCreated);
 		
 		JLabel lblCreatedItems = new JLabel("Created Items:");
@@ -351,6 +351,26 @@ public class ItemCreator {
 		txtSkillLevel.setBounds(147, 549, 42, 20);
 		frmRpcoreItemCreator.getContentPane().add(txtSkillLevel);
 		txtSkillLevel.setColumns(10);
+		
+		JButton btnDeleteItem = new JButton("Delete Item");
+		btnDeleteItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (JOptionPane.showConfirmDialog(frmRpcoreItemCreator,
+						"Are you sure you want to delete item: "
+								+ listCreated.getSelectedValue().toString()
+								+ "?", "Save?", JOptionPane.YES_NO_OPTION,
+						JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+					try {
+						Strings.deleteItem(listCreated.getSelectedValue()
+								.toString());
+						Strings.popItems();
+					} catch (Exception e) {
+					}
+				}
+			}
+		});
+		btnDeleteItem.setBounds(561, 587, 100, 23);
+		frmRpcoreItemCreator.getContentPane().add(btnDeleteItem);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frmRpcoreItemCreator.setJMenuBar(menuBar);
