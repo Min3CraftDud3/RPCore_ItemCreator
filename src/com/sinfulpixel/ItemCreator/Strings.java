@@ -20,6 +20,8 @@ public class Strings {
 	public static String[] skills = {"Smithing","Smelting","(none)","Wood Crafting", "Leather Working", "Cooking"};
 	public static String[] category = {"Weapon","Armor","Crafting Material","Building Material","(Other)"};
 	public static String information = "Author: Brandon H\nCurrent Version: 1.0\nFor use with RP-Core Plugin.";
+	public static String[] rarity = {"Poor","Common","Uncommon","Rare","Epic","Legendary","Artifact"};
+	public static String[] tier = {"0","1","2","3","4","5","6","7","8","9"};
 	public static List<String> materials = new ArrayList<>();
 	@SuppressWarnings("rawtypes")
 	public static DefaultListModel model = new DefaultListModel();
@@ -74,6 +76,10 @@ public class Strings {
 		String dmgMax = ItemCreator.txtDmgMax.getText();
 		String protMin = ItemCreator.txtProtMin.getText();
 		String protMax = ItemCreator.txtProtMax.getText();
+		String rarity = ItemCreator.cbRarity.getSelectedItem().toString();
+		String vBuy = ItemCreator.txtVBuy.getText();
+		String vSell = ItemCreator.txtVSell.getText();
+		String tier = ItemCreator.cbTier.getSelectedItem().toString();
 		//Save Operation
 		File ItemFile = new File("Items.yml");
 		if(ItemFile.exists()){
@@ -108,6 +114,10 @@ public class Strings {
 		    	if(!dmgMax.equals("")){fc.set("ItemFile."+itemName+".DmgMax", dmgMax);}
 		    	if(!protMin.equals("")){fc.set("ItemFile."+itemName+".ProtMin", protMin);}
 		    	if(!protMin.equals("")){fc.set("ItemFile."+itemName+".ProtMax", protMax);}
+		    	if(!vBuy.equals("")){fc.set("ItemFile."+itemName+".VendorBuyPrice", vBuy);}
+		    	if(!vSell.equals("")){fc.set("ItemFile."+itemName+".VendorSellPrice", vSell);}
+		    	if(!rarity.equals("")){fc.set("ItemFile."+itemName+".Rarity", rarity);}
+		    	if(!tier.equals("")){fc.set("ItemFile."+itemName+".Tier", tier);}
 		    }
 		    fc.save(ItemFile);			
 		}
@@ -226,6 +236,22 @@ public class Strings {
 					String protMax = fc.getString("ItemFile."+s+".ProtMax");
 					if(!protMax.equals("") && protMax != null){ItemCreator.txtProtMax.setText(protMax);}
 				}
+				if(fc.contains("ItemFile."+s+".Rarity")){
+					String rarity = fc.getString("ItemFile."+s+".Rarity");
+					if(!rarity.equals("") && rarity != null){ItemCreator.cbRarity.setSelectedItem(rarity);}
+				}
+				if(fc.contains("ItemFile."+s+".VendorBuyPrice")){
+					String vBuy = fc.getString("ItemFile."+s+".VendorBuyPrice");
+					if(!vBuy.equals("") && vBuy != null){ItemCreator.txtVBuy.setText(vBuy);}
+				}
+				if(fc.contains("ItemFile."+s+".VendorSellPrice")){
+					String vSell = fc.getString("ItemFile."+s+".VendorSellPrice");
+					if(!vSell.equals("") && vSell != null){ItemCreator.txtVSell.setText(vSell);}
+				}
+				if(fc.contains("ItemFile."+s+".Tier")){
+					String tier = fc.getString("ItemFile."+s+".Tier");
+					if(!tier.equals("") && tier != null){ItemCreator.cbTier.setSelectedItem(tier);}
+				}
 		    }
 		}
 	}
@@ -259,6 +285,10 @@ public class Strings {
 		ItemCreator.txtDmgMax.setText(null);
 		ItemCreator.txtProtMin.setText(null);
 		ItemCreator.txtProtMax.setText(null);
+		ItemCreator.txtVBuy.setText(null);
+		ItemCreator.txtVSell.setText(null);
+		ItemCreator.cbRarity.setSelectedIndex(0);
+		ItemCreator.cbTier.setSelectedIndex(0);
 	}
 	public static void deleteItem(String s)throws IOException{
 		File itemFile = new File("Items.yml");
