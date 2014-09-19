@@ -47,6 +47,8 @@ public class ItemCreator {
 	public static JComboBox<?> cbToolReq;
 	public static JComboBox<?> cbStation;
 	public static JList<?> listCreated;
+	public static JTextField txtSkillLevel;
+	public static JComboBox<?> cbSkill;
 
 	/**
 	 * Launch the application.
@@ -82,7 +84,7 @@ public class ItemCreator {
 	private void initialize() {
 		frmRpcoreItemCreator = new JFrame();
 		frmRpcoreItemCreator.setTitle("RP-Core Item Creator v1.0");
-		frmRpcoreItemCreator.setBounds(100, 100, 761, 626);
+		frmRpcoreItemCreator.setBounds(100, 100, 761, 681);
 		frmRpcoreItemCreator.addWindowListener(new java.awt.event.WindowAdapter(){
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent event){
@@ -106,7 +108,7 @@ public class ItemCreator {
 			}
 		});
 		listCreated.setBorder(new LineBorder(new Color(0, 0, 0)));
-		listCreated.setBounds(482, 38, 254, 522);
+		listCreated.setBounds(482, 38, 254, 572);
 		frmRpcoreItemCreator.getContentPane().add(listCreated);
 		
 		JLabel lblCreatedItems = new JLabel("Created Items:");
@@ -188,7 +190,7 @@ public class ItemCreator {
 		frmRpcoreItemCreator.getContentPane().add(cbMat5);
 		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(0, 416, 472, 5);
+		separator_1.setBounds(10, 419, 462, 2);
 		frmRpcoreItemCreator.getContentPane().add(separator_1);
 		
 		JLabel lblCustomItemName = new JLabel("Custom Item Name:");
@@ -321,7 +323,7 @@ public class ItemCreator {
 				try{Strings.saveFile();Strings.popItems();Strings.clearForm();}catch(Exception e){e.printStackTrace();}
 			}
 		});
-		btnCreateItem.setBounds(147, 527, 114, 23);
+		btnCreateItem.setBounds(147, 587, 114, 23);
 		frmRpcoreItemCreator.getContentPane().add(btnCreateItem);
 		
 		JLabel lblToolRequired = new JLabel("Tool Required:");
@@ -331,6 +333,23 @@ public class ItemCreator {
 		cbToolReq = new JComboBox<Object>(Strings.tools);
 		cbToolReq.setBounds(147, 468, 194, 20);
 		frmRpcoreItemCreator.getContentPane().add(cbToolReq);
+		
+		JLabel lblSkill = new JLabel("Skill:");
+		lblSkill.setBounds(10, 527, 93, 14);
+		frmRpcoreItemCreator.getContentPane().add(lblSkill);
+		
+		cbSkill = new JComboBox<Object>(Strings.skills);
+		cbSkill.setBounds(147, 524, 194, 20);
+		frmRpcoreItemCreator.getContentPane().add(cbSkill);
+		
+		JLabel lblSkillLevelReq = new JLabel("Skill Level Req:");
+		lblSkillLevelReq.setBounds(10, 552, 122, 14);
+		frmRpcoreItemCreator.getContentPane().add(lblSkillLevelReq);
+		
+		txtSkillLevel = new JTextField();
+		txtSkillLevel.setBounds(147, 549, 42, 20);
+		frmRpcoreItemCreator.getContentPane().add(txtSkillLevel);
+		txtSkillLevel.setColumns(10);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frmRpcoreItemCreator.setJMenuBar(menuBar);
