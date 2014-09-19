@@ -185,4 +185,28 @@ public class Strings {
 		    }
 		}
 	}
+	public static void clearForm(){
+		ItemCreator.cbMat1.setSelectedIndex(0);
+		ItemCreator.cbItem.setSelectedIndex(0);
+		ItemCreator.cbMat2.setSelectedIndex(0);
+		ItemCreator.cbMat3.setSelectedIndex(0);
+		ItemCreator.cbMat4.setSelectedIndex(0);
+		ItemCreator.cbMat5.setSelectedIndex(0);
+		ItemCreator.cbStation.setSelectedIndex(0);
+		ItemCreator.cbToolReq.setSelectedIndex(0);
+		ItemCreator.txtDesc.setText(null);
+		ItemCreator.txtHigh.setText(null);
+		ItemCreator.txtLow.setText(null);
+		ItemCreator.txtName.setText(null);
+		ItemCreator.txtMat1Amnt.setText(null);
+		ItemCreator.txtMat1Name.setText(null);
+		ItemCreator.txtMat2Amnt.setText(null);
+		ItemCreator.txtMat2Name.setText(null);
+		ItemCreator.txtMat3Amnt.setText(null);
+		ItemCreator.txtMat3Name.setText(null);
+		ItemCreator.txtMat4Amnt.setText(null);
+		ItemCreator.txtMat4Name.setText(null);
+		ItemCreator.txtMat5Amnt.setText(null);
+		ItemCreator.txtMat5Name.setText(null);	
+	}
 }
