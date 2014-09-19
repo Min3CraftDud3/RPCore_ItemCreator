@@ -18,6 +18,8 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionEvent;
 
 public class ItemCreator {
 
@@ -98,6 +100,11 @@ public class ItemCreator {
 		frmRpcoreItemCreator.getContentPane().setLayout(null);
 		
 		listCreated = new JList<Object>(Strings.model);
+		listCreated.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) {
+				Strings.popForm(listCreated.getSelectedValue().toString());
+			}
+		});
 		listCreated.setBorder(new LineBorder(new Color(0, 0, 0)));
 		listCreated.setBounds(482, 38, 254, 522);
 		frmRpcoreItemCreator.getContentPane().add(listCreated);
