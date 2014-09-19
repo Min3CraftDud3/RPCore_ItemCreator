@@ -17,6 +17,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 public class Strings {
 	public static String[] stations = {"Leather Working", "Forge", "Campfire", "Anvil", "Stove", "Inventory", "Carpentry"};
 	public static String[] tools = {"Knife", "Forge Hammer", "Saw","(none)"};
+	public static String[] skills = {"Smithing","Smelting","(none)","Wood Crafting", "Leather Working"};
 	public static String information = "Author: Brandon H\nCurrent Version: 1.0\nFor use with RP-Core Plugin.";
 	public static List<String> materials = new ArrayList<>();
 	@SuppressWarnings("rawtypes")
@@ -30,9 +31,7 @@ public class Strings {
 		java.util.Collections.sort(materials);
 		Arrays.sort(stations);
 		Arrays.sort(tools);
-		for(String s:materials){
-			System.out.println(s);
-		}
+		Arrays.sort(skills);
 	}
 	public static void createFile() throws IOException{
 		File ItemFile = new File("Items.yml");
@@ -66,6 +65,8 @@ public class Strings {
 		String chanceL = ItemCreator.txtLow.getText();
 		String station = ItemCreator.cbStation.getSelectedItem().toString();
 		String tool = ItemCreator.cbToolReq.getSelectedItem().toString();
+		String skill = ItemCreator.cbSkill.getSelectedItem().toString();
+		String skillLevel = ItemCreator.txtSkillLevel.getText();
 		//Save Operation
 		File ItemFile = new File("Items.yml");
 		if(ItemFile.exists()){
@@ -93,6 +94,8 @@ public class Strings {
 		    	if(!chanceL.equals("")){fc.set("ItemFile."+itemName+".ChanceLow", chanceL);}
 		    	if(!station.equals("")){fc.set("ItemFile."+itemName+".WorkStation", station);}
 		    	if(!tool.equals("")){fc.set("ItemFile."+itemName+".Tool", tool);}
+		    	if(!skill.equals("")){fc.set("ItemFile."+itemName+".Skill", skill);}
+		    	if(!skillLevel.equals("")){fc.set("ItemFile."+itemName+".SkillLevel", skillLevel);}
 		    }
 		    fc.save(ItemFile);			
 		}
@@ -181,7 +184,15 @@ public class Strings {
 				if(fc.contains("ItemFile."+s+".Tool")){
 				String tool = fc.getString("ItemFile."+s+".Tool");
 				if(!tool.equals("") && tool != null){ItemCreator.cbToolReq.setSelectedItem(tool);}
-				}		
+				}	
+				if(fc.contains("ItemFile."+s+".Skill")){
+					String skill = fc.getString("ItemFile."+s+".Skill");
+					if(!skill.equals("") && skill != null){ItemCreator.cbSkill.setSelectedItem(skill);}
+				}
+				if(fc.contains("ItemFile."+s+".SkillLevel")){
+					String skillLevel = fc.getString("ItemFile."+s+".SkillLevel");
+					if(!skillLevel.equals("") && skillLevel != null){ItemCreator.txtSkillLevel.setText(skillLevel);}
+				}
 		    }
 		}
 	}
@@ -194,6 +205,7 @@ public class Strings {
 		ItemCreator.cbMat5.setSelectedIndex(0);
 		ItemCreator.cbStation.setSelectedIndex(0);
 		ItemCreator.cbToolReq.setSelectedIndex(0);
+		ItemCreator.cbSkill.setSelectedIndex(0);
 		ItemCreator.txtDesc.setText(null);
 		ItemCreator.txtHigh.setText(null);
 		ItemCreator.txtLow.setText(null);
@@ -208,5 +220,6 @@ public class Strings {
 		ItemCreator.txtMat4Name.setText(null);
 		ItemCreator.txtMat5Amnt.setText(null);
 		ItemCreator.txtMat5Name.setText(null);	
+		ItemCreator.txtSkillLevel.setText(null);
 	}
 }
