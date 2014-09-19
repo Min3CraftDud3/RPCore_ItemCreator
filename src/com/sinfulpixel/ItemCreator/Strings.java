@@ -2,11 +2,16 @@ package com.sinfulpixel.ItemCreator;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.DefaultListModel;
 
 import org.bukkit.Material;
@@ -18,8 +23,8 @@ public class Strings {
 	public static String[] stations = {"Leather Working", "Forge", "Campfire", "Anvil", "Stove", "Inventory", "Carpentry"};
 	public static String[] tools = {"Knife", "Forge Hammer", "Saw","(none)","Ingot Mold","Cooking Utensils"};
 	public static String[] skills = {"Smithing","Smelting","(none)","Wood Crafting", "Leather Working", "Cooking"};
-	public static String[] category = {"Weapon","Armor","Crafting Material","Building Material","(Other)"};
-	public static String information = "Author: Brandon H\nCurrent Version: 1.0\nFor use with RP-Core Plugin.";
+	public static String[] category = {"Tool","Weapon","Armor","Crafting Material","Building Material","(Other)"};
+	public static String information = "Author: Brandon H\nCurrent Version: 1.2\nFor use with RP-Core Plugin.";
 	public static String[] rarity = {"(none)","Poor","Common","Uncommon","Rare","Epic","Legendary","Artifact","Quest"};
 	public static String[] tier = {"1","2","3","4","5","6","7","8","9","10"};
 	public static String[] sk = {"Defense","Health","Range","Strength","Farming","Cooking","Woodcutting",
@@ -29,7 +34,12 @@ public class Strings {
 	public static List<String> materials = new ArrayList<>();
 	@SuppressWarnings("rawtypes")
 	public static DefaultListModel model = new DefaultListModel();
-	
+	public static String[] title = {"MeltedGhost is a cunt!","Hodor!","Bewm Bewm","Do you smell popcorn?",
+		"I'm bringing sexy back.","Kyle's got Biggles","MOAR FIRE!!!","Lord Foreskin","Ohm Mighty Potatio Ohm",
+		"Pepperoni Nipples","#Fist4Forely","Hitler wasn't wrong.","It puts the lotion on its skin",
+		"Are you feeling it now?","Bring me a SHRUBBERY!","How do asians see?","It's Craptastic","Darude - Sandstorm",
+		"The cake is a lie","Keep Calm Vape On!"};
+	static Random rand = new Random();
 	public static void popMaterials(){
 		materials.add("(none)");
 		for(Material s :Material.values()){
@@ -41,6 +51,22 @@ public class Strings {
 		Arrays.sort(skills);
 		Arrays.sort(category);
 		Arrays.sort(sk);
+	}
+	public static String randTitle(){
+		int i = rand.nextInt(title.length);
+		String s = title[i];
+		if(s.equals("Darude - Sandstorm")){
+			try {
+			URL url = new URL("https://www.dropbox.com/s/yltohrao2u276u0/ds.wav?dl=1");
+			AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+			Clip clip = AudioSystem.getClip();
+			clip.open(audioIn);
+			clip.start();
+			clip.loop(0);
+			System.out.println("Playing");
+			} catch (Exception e) {e.printStackTrace();}
+		}
+		return s;
 	}
 	public static void createFile() throws IOException{
 		File ItemFile = new File("Items.yml");

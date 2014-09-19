@@ -99,7 +99,7 @@ public class ItemCreator {
 	private void initialize() {
 		frmRpcoreItemCreator = new JFrame();
 		frmRpcoreItemCreator.setResizable(false);
-		frmRpcoreItemCreator.setTitle("RP-Core Item Creator v1.1");
+		frmRpcoreItemCreator.setTitle("Item Creator v1.2 - "+Strings.randTitle());
 		frmRpcoreItemCreator.setBounds(100, 100, 761, 722);
 		frmRpcoreItemCreator.addWindowListener(new java.awt.event.WindowAdapter(){
 			@Override
@@ -519,6 +519,21 @@ public class ItemCreator {
 			}
 		});
 		mnFile.add(mntmExit);
+		
+		JMenu mnEdit = new JMenu("Edit");
+		menuBar.add(mnEdit);
+		
+		JMenuItem mntmClearForm = new JMenuItem("Clear Form");
+		mntmClearForm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int dialogButton = JOptionPane.YES_NO_OPTION;
+				int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to clear the form?","Warning",dialogButton);
+				if(dialogResult==0){
+					Strings.clearForm();
+				}
+			}
+		});
+		mnEdit.add(mntmClearForm);
 		
 		JMenu mnAbout = new JMenu("About");
 		menuBar.add(mnAbout);
