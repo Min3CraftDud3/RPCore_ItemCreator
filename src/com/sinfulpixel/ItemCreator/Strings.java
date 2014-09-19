@@ -20,6 +20,12 @@ public class Strings {
 	public static String[] skills = {"Smithing","Smelting","(none)","Wood Crafting", "Leather Working", "Cooking"};
 	public static String[] category = {"Weapon","Armor","Crafting Material","Building Material","(Other)"};
 	public static String information = "Author: Brandon H\nCurrent Version: 1.0\nFor use with RP-Core Plugin.";
+	public static String[] rarity = {"(none)","Poor","Common","Uncommon","Rare","Epic","Legendary","Artifact","Quest"};
+	public static String[] tier = {"1","2","3","4","5","6","7","8","9","10"};
+	public static String[] sk = {"Defense","Health","Range","Strength","Farming","Cooking","Woodcutting",
+		"Wood Crafting","Leather Working","Smelting","Smithing","Luck","Alchemy","Firemaking","Mining",
+		"Cooking","Fishing","(none)"};
+	public static String[] later = {"Fuck","You","Melted"};
 	public static List<String> materials = new ArrayList<>();
 	@SuppressWarnings("rawtypes")
 	public static DefaultListModel model = new DefaultListModel();
@@ -34,6 +40,7 @@ public class Strings {
 		Arrays.sort(tools);
 		Arrays.sort(skills);
 		Arrays.sort(category);
+		Arrays.sort(sk);
 	}
 	public static void createFile() throws IOException{
 		File ItemFile = new File("Items.yml");
@@ -63,8 +70,9 @@ public class Strings {
 		String Mat5 = ItemCreator.cbMat5.getSelectedItem().toString();
 		String Mat5Name = ItemCreator.txtMat5Name.getText();
 		String Mat5Amnt = ItemCreator.txtMat5Amnt.getText();
-		String chanceH = ItemCreator.txtHigh.getText();
-		String chanceL = ItemCreator.txtLow.getText();
+		String chance50 = ItemCreator.cbSp50.getSelectedItem().toString();
+		String chance25 = ItemCreator.cbSp25.getSelectedItem().toString();
+		String chance12 = ItemCreator.cbSp12.getSelectedItem().toString();
 		String station = ItemCreator.cbStation.getSelectedItem().toString();
 		String tool = ItemCreator.cbToolReq.getSelectedItem().toString();
 		String skill = ItemCreator.cbSkill.getSelectedItem().toString();
@@ -74,6 +82,16 @@ public class Strings {
 		String dmgMax = ItemCreator.txtDmgMax.getText();
 		String protMin = ItemCreator.txtProtMin.getText();
 		String protMax = ItemCreator.txtProtMax.getText();
+		String rarity = ItemCreator.cbRarity.getSelectedItem().toString();
+		String vBuy = ItemCreator.txtVBuy.getText();
+		String vSell = ItemCreator.txtVSell.getText();
+		String tier = ItemCreator.cbTier.getSelectedItem().toString();
+		//
+		String skillReq1 = ItemCreator.cbSkUse1.getSelectedItem().toString();
+		String skillReq2 = ItemCreator.cbSkUse2.getSelectedItem().toString();
+		String skillReq1Lvl = ItemCreator.txtSkUse1Lvl.getText();
+		String skillReq2Lvl = ItemCreator.txtSkUse2Lvl.getText();
+		
 		//Save Operation
 		File ItemFile = new File("Items.yml");
 		if(ItemFile.exists()){
@@ -97,8 +115,9 @@ public class Strings {
 		    	if(!Mat5.equals("(none)")){fc.set("ItemFile."+itemName+".Mat5", Mat5);}
 		    	if(!Mat5Name.equals("")){fc.set("ItemFile."+itemName+".Mat5Name", Mat5Name);}
 		    	if(!Mat5Amnt.equals("")){fc.set("ItemFile."+itemName+".Mat5Amnt", Mat5Amnt);}
-		    	if(!chanceH.equals("")){fc.set("ItemFile."+itemName+".ChanceHigh", chanceH);}
-		    	if(!chanceL.equals("")){fc.set("ItemFile."+itemName+".ChanceLow", chanceL);}
+		    	if(!chance50.equals("")){fc.set("ItemFile."+itemName+".SpecialChance50", chance50);}
+		    	if(!chance25.equals("")){fc.set("ItemFile."+itemName+".SpecialChance25", chance25);}
+		    	if(!chance12.equals("")){fc.set("ItemFile."+itemName+".SpecialChance12", chance12);}
 		    	if(!station.equals("")){fc.set("ItemFile."+itemName+".WorkStation", station);}
 		    	if(!tool.equals("")){fc.set("ItemFile."+itemName+".Tool", tool);}
 		    	if(!skill.equals("")){fc.set("ItemFile."+itemName+".Skill", skill);}
@@ -108,6 +127,14 @@ public class Strings {
 		    	if(!dmgMax.equals("")){fc.set("ItemFile."+itemName+".DmgMax", dmgMax);}
 		    	if(!protMin.equals("")){fc.set("ItemFile."+itemName+".ProtMin", protMin);}
 		    	if(!protMin.equals("")){fc.set("ItemFile."+itemName+".ProtMax", protMax);}
+		    	if(!vBuy.equals("")){fc.set("ItemFile."+itemName+".VendorBuyPrice", vBuy);}
+		    	if(!vSell.equals("")){fc.set("ItemFile."+itemName+".VendorSellPrice", vSell);}
+		    	if(!rarity.equals("")){fc.set("ItemFile."+itemName+".Rarity", rarity);}
+		    	if(!tier.equals("")){fc.set("ItemFile."+itemName+".Tier", tier);}
+		    	if(!skillReq1.equals("")){fc.set("ItemFile."+itemName+".SkillReq1", skillReq1);}
+		    	if(!skillReq2.equals("")){fc.set("ItemFile."+itemName+".SkillReq2", skillReq2);}
+		    	if(!skillReq1Lvl.equals("")){fc.set("ItemFile."+itemName+".SkillReq1Lvl", skillReq1Lvl);}
+		    	if(!skillReq2Lvl.equals("")){fc.set("ItemFile."+itemName+".SkillReq2Lvl", skillReq2Lvl);}
 		    }
 		    fc.save(ItemFile);			
 		}
@@ -182,14 +209,18 @@ public class Strings {
 				if(!Mat5Name.equals("") && Mat5Name != null){ItemCreator.txtMat5Name.setText(Mat5Name);}
 				if(!Mat5Amnt.equals("") && Mat5Amnt != null){ItemCreator.txtMat5Amnt.setText(Mat5Amnt);}
 				}
-				if(fc.contains("ItemFile."+s+".ChanceHigh")){
-				String chanceH = fc.getString("ItemFile."+s+".ChanceHigh");
-				if(!chanceH.equals("") && chanceH != null){ItemCreator.txtHigh.setText(chanceH);}
+				if(fc.contains("ItemFile."+s+".SpecialChance50")){
+				String chance50 = fc.getString("ItemFile."+s+".SpecialChance50");
+				if(!chance50.equals("") && chance50 != null){ItemCreator.cbSp50.setSelectedItem(chance50);}
 				}
-				if(fc.contains("ItemFile."+s+".ChanceLow")){
-				String chanceL = fc.getString("ItemFile."+s+".ChanceLow");
-				if(!chanceL.equals("") && chanceL != null){ItemCreator.txtLow.setText(chanceL);}
+				if(fc.contains("ItemFile."+s+".SpecialChance25")){
+				String chance25 = fc.getString("ItemFile."+s+".SpecialChance25");
+				if(!chance25.equals("") && chance25 != null){ItemCreator.cbSp25.setSelectedItem(chance25);}
 				}
+				if(fc.contains("ItemFile."+s+".SpecialChance12")){
+					String chance12 = fc.getString("ItemFile."+s+".SpecialChance12");
+					if(!chance12.equals("") && chance12 != null){ItemCreator.cbSp12.setSelectedItem(chance12);}
+					}
 				if(fc.contains("ItemFile."+s+".WorkStation")){
 				String station = fc.getString("ItemFile."+s+".WorkStation");
 				if(!station.equals("") && station != null){ItemCreator.cbStation.setSelectedItem(station);}
@@ -226,6 +257,39 @@ public class Strings {
 					String protMax = fc.getString("ItemFile."+s+".ProtMax");
 					if(!protMax.equals("") && protMax != null){ItemCreator.txtProtMax.setText(protMax);}
 				}
+				if(fc.contains("ItemFile."+s+".Rarity")){
+					String rarity = fc.getString("ItemFile."+s+".Rarity");
+					if(!rarity.equals("") && rarity != null){ItemCreator.cbRarity.setSelectedItem(rarity);}
+				}
+				if(fc.contains("ItemFile."+s+".VendorBuyPrice")){
+					String vBuy = fc.getString("ItemFile."+s+".VendorBuyPrice");
+					if(!vBuy.equals("") && vBuy != null){ItemCreator.txtVBuy.setText(vBuy);}
+				}
+				if(fc.contains("ItemFile."+s+".VendorSellPrice")){
+					String vSell = fc.getString("ItemFile."+s+".VendorSellPrice");
+					if(!vSell.equals("") && vSell != null){ItemCreator.txtVSell.setText(vSell);}
+				}
+				if(fc.contains("ItemFile."+s+".Tier")){
+					String tier = fc.getString("ItemFile."+s+".Tier");
+					if(!tier.equals("") && tier != null){ItemCreator.cbTier.setSelectedItem(tier);}
+				} 
+				if(fc.contains("ItemFile."+s+".SkillReq1")){
+					String skillReq1 = fc.getString("ItemFile."+s+".SkillReq1");
+					if(!skillReq1.equals("") && skillReq1 != null){ItemCreator.cbSkUse1.setSelectedItem(skillReq1);}
+				}
+				if(fc.contains("ItemFile."+s+".SkillReq1Lvl")){
+					String skillReq1Lvl = fc.getString("ItemFile."+s+".SkillReq1Lvl");
+					if(!skillReq1Lvl.equals("") && skillReq1Lvl != null){ItemCreator.txtSkUse1Lvl.setText(skillReq1Lvl);}
+				}
+				if(fc.contains("ItemFile."+s+".SkillReq2")){
+					String skillReq2 = fc.getString("ItemFile."+s+".SkillReq2");
+					if(!skillReq2.equals("") && skillReq2 != null){ItemCreator.cbSkUse2.setSelectedItem(skillReq2);}
+				}
+				if(fc.contains("ItemFile."+s+".SkillReq1Lvl")){
+					String skillReq1Lv2 = fc.getString("ItemFile."+s+".SkillReq2Lvl");
+					if(!skillReq1Lv2.equals("") && skillReq1Lv2 != null){ItemCreator.txtSkUse2Lvl.setText(skillReq1Lv2);}
+				}
+				
 		    }
 		}
 	}
@@ -241,8 +305,9 @@ public class Strings {
 		ItemCreator.cbSkill.setSelectedIndex(0);
 		ItemCreator.cbCat.setSelectedIndex(0);
 		ItemCreator.txtDesc.setText(null);
-		ItemCreator.txtHigh.setText(null);
-		ItemCreator.txtLow.setText(null);
+		ItemCreator.cbSp50.setSelectedIndex(0);
+		ItemCreator.cbSp25.setSelectedIndex(0);
+		ItemCreator.cbSp12.setSelectedIndex(0);
 		ItemCreator.txtName.setText(null);
 		ItemCreator.txtMat1Amnt.setText(null);
 		ItemCreator.txtMat1Name.setText(null);
@@ -259,6 +324,14 @@ public class Strings {
 		ItemCreator.txtDmgMax.setText(null);
 		ItemCreator.txtProtMin.setText(null);
 		ItemCreator.txtProtMax.setText(null);
+		ItemCreator.txtVBuy.setText(null);
+		ItemCreator.txtVSell.setText(null);
+		ItemCreator.cbRarity.setSelectedIndex(0);
+		ItemCreator.cbTier.setSelectedIndex(0);
+		ItemCreator.cbSkUse1.setSelectedIndex(0);
+		ItemCreator.cbSkUse2.setSelectedIndex(0);
+		ItemCreator.txtSkUse1Lvl.setText(null);
+		ItemCreator.txtSkUse2Lvl.setText(null);
 	}
 	public static void deleteItem(String s)throws IOException{
 		File itemFile = new File("Items.yml");

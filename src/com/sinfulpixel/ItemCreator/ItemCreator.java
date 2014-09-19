@@ -14,9 +14,9 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
@@ -37,8 +37,6 @@ public class ItemCreator {
 	public static JTextField txtMat4Name;
 	public static JTextField txtMat5Name;
 	public static JTextField txtMat5Amnt;
-	public static JTextField txtLow;
-	public static JTextField txtHigh;
 	public static JComboBox<?> cbItem;
 	public static JComboBox<?> cbMat1;
 	public static JComboBox<?> cbMat2;
@@ -47,14 +45,25 @@ public class ItemCreator {
 	public static JComboBox<?> cbMat5;
 	public static JComboBox<?> cbToolReq;
 	public static JComboBox<?> cbStation;
+	public static JComboBox<?> cbSp50;
+	public static JComboBox<?> cbSp25;
+	public static JComboBox<?> cbSp12;
 	public static JList<?> listCreated;
 	public static JTextField txtSkillLevel;
 	public static JComboBox<?> cbSkill;
 	public static JComboBox<?> cbCat;
+	public static JComboBox<?> cbRarity;
+	public static JComboBox<?> cbTier;
 	public static JTextField txtDmgMin;
 	public static JTextField txtDmgMax;
 	public static JTextField txtProtMin;
 	public static JTextField txtProtMax;
+	public static JTextField txtVSell;
+	public static JTextField txtVBuy;
+	public static JTextField txtSkUse2Lvl;
+	public static JTextField txtSkUse1Lvl;
+	public static JComboBox<?> cbSkUse1;
+	public static JComboBox<?> cbSkUse2;
 
 	/**
 	 * Launch the application.
@@ -116,11 +125,11 @@ public class ItemCreator {
 			}
 		});
 		listCreated.setBorder(new LineBorder(new Color(0, 0, 0)));
-		listCreated.setBounds(482, 38, 254, 528);
+		listCreated.setBounds(482, 38, 254, 348);
 		
-		JScrollPane list = new JScrollPane(listCreated);
-		list.setBounds(482, 38, 254, 528);
-		frmRpcoreItemCreator.getContentPane().add(list);
+		//JScrollPane list = new JScrollPane(listCreated);
+		//list.setBounds(482, 38, 254, 528);
+		frmRpcoreItemCreator.getContentPane().add(listCreated);
 
 		
 		JLabel lblCreatedItems = new JLabel("Created Items:");
@@ -202,7 +211,7 @@ public class ItemCreator {
 		frmRpcoreItemCreator.getContentPane().add(cbMat5);
 		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(10, 434, 462, 2);
+		separator_1.setBounds(10, 434, 735, 2);
 		frmRpcoreItemCreator.getContentPane().add(separator_1);
 		
 		JLabel lblCustomItemName = new JLabel("Custom Item Name:");
@@ -267,7 +276,7 @@ public class ItemCreator {
 		txtMat4Amnt.setColumns(10);
 		txtMat4Amnt.setBounds(408, 324, 56, 20);
 		frmRpcoreItemCreator.getContentPane().add(txtMat4Amnt);
-		
+		 
 		JLabel label_5 = new JLabel("Custom Item Name:");
 		label_5.setBounds(10, 352, 122, 14);
 		frmRpcoreItemCreator.getContentPane().add(label_5);
@@ -300,7 +309,7 @@ public class ItemCreator {
 		frmRpcoreItemCreator.getContentPane().add(lblItemInformation);
 		
 		JLabel lblRequiredWorkstation = new JLabel("Other Information:");
-		lblRequiredWorkstation.setBounds(72, 439, 180, 14);
+		lblRequiredWorkstation.setBounds(327, 435, 100, 14);
 		frmRpcoreItemCreator.getContentPane().add(lblRequiredWorkstation);
 		
 		JLabel lblWorkstation = new JLabel("Workstation:");
@@ -311,23 +320,9 @@ public class ItemCreator {
 		cbStation.setBounds(147, 458, 194, 20);
 		frmRpcoreItemCreator.getContentPane().add(cbStation);
 		
-		JLabel lblSpecialChance = new JLabel("Special Chance (Low/High):");
-		lblSpecialChance.setBounds(10, 514, 154, 14);
+		JLabel lblSpecialChance = new JLabel("Special Chance (50,25,12)%:");
+		lblSpecialChance.setBounds(10, 514, 161, 14);
 		frmRpcoreItemCreator.getContentPane().add(lblSpecialChance);
-		
-		txtLow = new JTextField();
-		txtLow.setBounds(254, 508, 42, 20);
-		frmRpcoreItemCreator.getContentPane().add(txtLow);
-		txtLow.setColumns(10);
-		
-		JLabel label_8 = new JLabel("/");
-		label_8.setBounds(295, 511, 14, 14);
-		frmRpcoreItemCreator.getContentPane().add(label_8);
-		
-		txtHigh = new JTextField();
-		txtHigh.setColumns(10);
-		txtHigh.setBounds(299, 508, 42, 20);
-		frmRpcoreItemCreator.getContentPane().add(txtHigh);
 		
 		JButton btnCreateItem = new JButton("Create Item");
 		btnCreateItem.addActionListener(new ActionListener() {
@@ -335,7 +330,7 @@ public class ItemCreator {
 				try{Strings.saveFile();Strings.popItems();Strings.clearForm();}catch(Exception e){e.printStackTrace();}
 			}
 		});
-		btnCreateItem.setBounds(147, 642, 114, 23);
+		btnCreateItem.setBounds(320, 642, 114, 23);
 		frmRpcoreItemCreator.getContentPane().add(btnCreateItem);
 		
 		JLabel lblToolRequired = new JLabel("Tool Required:");
@@ -346,7 +341,7 @@ public class ItemCreator {
 		cbToolReq.setBounds(147, 483, 194, 20);
 		frmRpcoreItemCreator.getContentPane().add(cbToolReq);
 		
-		JLabel lblSkill = new JLabel("Skill:");
+		JLabel lblSkill = new JLabel("Crafting Skill:");
 		lblSkill.setBounds(10, 542, 93, 14);
 		frmRpcoreItemCreator.getContentPane().add(lblSkill);
 		
@@ -354,8 +349,8 @@ public class ItemCreator {
 		cbSkill.setBounds(147, 536, 194, 20);
 		frmRpcoreItemCreator.getContentPane().add(cbSkill);
 		
-		JLabel lblSkillLevelReq = new JLabel("Skill Level Req:");
-		lblSkillLevelReq.setBounds(10, 567, 122, 14);
+		JLabel lblSkillLevelReq = new JLabel("Crafting Skill Level Req:");
+		lblSkillLevelReq.setBounds(10, 567, 149, 14);
 		frmRpcoreItemCreator.getContentPane().add(lblSkillLevelReq);
 		
 		txtSkillLevel = new JTextField();
@@ -380,10 +375,10 @@ public class ItemCreator {
 				}
 			}
 		});
-		btnDeleteItem.setBounds(563, 642, 100, 23);
+		btnDeleteItem.setBounds(559, 397, 100, 23);
 		frmRpcoreItemCreator.getContentPane().add(btnDeleteItem);
 		
-		JLabel lblItemCetegory = new JLabel("Item Cetegory:");
+		JLabel lblItemCetegory = new JLabel("Item Category:");
 		lblItemCetegory.setBounds(10, 113, 114, 14);
 		frmRpcoreItemCreator.getContentPane().add(lblItemCetegory);
 		
@@ -426,6 +421,83 @@ public class ItemCreator {
 		txtProtMax.setColumns(10);
 		txtProtMax.setBounds(299, 611, 42, 20);
 		frmRpcoreItemCreator.getContentPane().add(txtProtMax);
+		
+		JSeparator separator_2 = new JSeparator();
+		separator_2.setOrientation(SwingConstants.VERTICAL);
+		separator_2.setBounds(376, 458, 2, 173);
+		frmRpcoreItemCreator.getContentPane().add(separator_2);
+		
+		JLabel lblRarity = new JLabel("Rarity:");
+		lblRarity.setBounds(388, 461, 65, 14);
+		frmRpcoreItemCreator.getContentPane().add(lblRarity);
+		
+		cbRarity = new JComboBox<Object>(Strings.rarity);
+		cbRarity.setBounds(542, 458, 194, 20);
+		frmRpcoreItemCreator.getContentPane().add(cbRarity);
+		
+		JLabel lblVendorbuysell = new JLabel("Vendor (Buy/Sell):");
+		lblVendorbuysell.setBounds(388, 486, 114, 14);
+		frmRpcoreItemCreator.getContentPane().add(lblVendorbuysell);
+		
+		txtVSell = new JTextField();
+		txtVSell.setColumns(10);
+		txtVSell.setBounds(694, 480, 42, 20);
+		frmRpcoreItemCreator.getContentPane().add(txtVSell);
+		
+		JLabel label_11 = new JLabel("/");
+		label_11.setBounds(690, 483, 14, 14);
+		frmRpcoreItemCreator.getContentPane().add(label_11);
+		
+		txtVBuy = new JTextField();
+		txtVBuy.setColumns(10);
+		txtVBuy.setBounds(649, 480, 42, 20);
+		frmRpcoreItemCreator.getContentPane().add(txtVBuy);
+		
+		JLabel lblTeir = new JLabel("Tier:");
+		lblTeir.setBounds(388, 514, 46, 14);
+		frmRpcoreItemCreator.getContentPane().add(lblTeir);
+		
+		cbTier = new JComboBox<Object>(Strings.tier);
+		cbTier.setBounds(694, 508, 42, 20);
+		frmRpcoreItemCreator.getContentPane().add(cbTier);
+		
+		JLabel lblSkillToUse = new JLabel("Skill Req 1/Level:");
+		lblSkillToUse.setBounds(388, 539, 114, 14);
+		frmRpcoreItemCreator.getContentPane().add(lblSkillToUse);
+		
+		JLabel lblSkillToUse_1 = new JLabel("Skill Req 2/Level:");
+		lblSkillToUse_1.setBounds(388, 567, 114, 14);
+		frmRpcoreItemCreator.getContentPane().add(lblSkillToUse_1);
+		
+		txtSkUse2Lvl = new JTextField();
+		txtSkUse2Lvl.setColumns(10);
+		txtSkUse2Lvl.setBounds(694, 564, 42, 20);
+		frmRpcoreItemCreator.getContentPane().add(txtSkUse2Lvl);
+		
+		txtSkUse1Lvl = new JTextField();
+		txtSkUse1Lvl.setColumns(10);
+		txtSkUse1Lvl.setBounds(694, 539, 42, 20);
+		frmRpcoreItemCreator.getContentPane().add(txtSkUse1Lvl);
+		
+		cbSkUse1 = new JComboBox<Object>(Strings.sk);
+		cbSkUse1.setBounds(542, 539, 149, 20);
+		frmRpcoreItemCreator.getContentPane().add(cbSkUse1);
+		
+		cbSkUse2 = new JComboBox<Object>(Strings.sk);
+		cbSkUse2.setBounds(542, 564, 149, 20);
+		frmRpcoreItemCreator.getContentPane().add(cbSkUse2);
+		
+		cbSp12 = new JComboBox<Object>(Strings.later);
+		cbSp12.setBounds(295, 508, 46, 20);
+		frmRpcoreItemCreator.getContentPane().add(cbSp12);
+		
+		cbSp25 = new JComboBox<Object>(Strings.later);
+		cbSp25.setBounds(237, 508, 46, 20);
+		frmRpcoreItemCreator.getContentPane().add(cbSp25);
+		
+		cbSp50 = new JComboBox<Object>(Strings.later);
+		cbSp50.setBounds(181, 508, 46, 20);
+		frmRpcoreItemCreator.getContentPane().add(cbSp50);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frmRpcoreItemCreator.setJMenuBar(menuBar);
