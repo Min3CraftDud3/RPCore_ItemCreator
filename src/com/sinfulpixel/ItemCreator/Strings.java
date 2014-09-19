@@ -25,7 +25,7 @@ public class Strings {
 	public static String[] sk = {"Defense","Health","Range","Strength","Farming","Cooking","Woodcutting",
 		"Wood Crafting","Leather Working","Smelting","Smithing","Luck","Alchemy","Firemaking","Mining",
 		"Cooking","Fishing","(none)"};
-	public static String[] later = {"Fuck","You","Melted"};
+	public static String[] later = {"(none)"};
 	public static List<String> materials = new ArrayList<>();
 	@SuppressWarnings("rawtypes")
 	public static DefaultListModel model = new DefaultListModel();
@@ -115,12 +115,12 @@ public class Strings {
 		    	if(!Mat5.equals("(none)")){fc.set("ItemFile."+itemName+".Mat5", Mat5);}
 		    	if(!Mat5Name.equals("")){fc.set("ItemFile."+itemName+".Mat5Name", Mat5Name);}
 		    	if(!Mat5Amnt.equals("")){fc.set("ItemFile."+itemName+".Mat5Amnt", Mat5Amnt);}
-		    	if(!chance50.equals("")){fc.set("ItemFile."+itemName+".SpecialChance50", chance50);}
-		    	if(!chance25.equals("")){fc.set("ItemFile."+itemName+".SpecialChance25", chance25);}
-		    	if(!chance12.equals("")){fc.set("ItemFile."+itemName+".SpecialChance12", chance12);}
+		    	if(!chance50.equals("(none)")){fc.set("ItemFile."+itemName+".SpecialChance50", chance50);}
+		    	if(!chance25.equals("(none)")){fc.set("ItemFile."+itemName+".SpecialChance25", chance25);}
+		    	if(!chance12.equals("(none)")){fc.set("ItemFile."+itemName+".SpecialChance12", chance12);}
 		    	if(!station.equals("")){fc.set("ItemFile."+itemName+".WorkStation", station);}
-		    	if(!tool.equals("")){fc.set("ItemFile."+itemName+".Tool", tool);}
-		    	if(!skill.equals("")){fc.set("ItemFile."+itemName+".Skill", skill);}
+		    	if(!tool.equals("(none)")){fc.set("ItemFile."+itemName+".Tool", tool);}
+		    	if(!skill.equals("(none)")){fc.set("ItemFile."+itemName+".Skill", skill);}
 		    	if(!skillLevel.equals("")){fc.set("ItemFile."+itemName+".SkillLevel", skillLevel);}
 		    	if(!category.equals("")){fc.set("ItemFile."+itemName+".Category", category);}
 		    	if(!dmgMin.equals("")){fc.set("ItemFile."+itemName+".DmgMin", dmgMin);}
@@ -129,10 +129,10 @@ public class Strings {
 		    	if(!protMin.equals("")){fc.set("ItemFile."+itemName+".ProtMax", protMax);}
 		    	if(!vBuy.equals("")){fc.set("ItemFile."+itemName+".VendorBuyPrice", vBuy);}
 		    	if(!vSell.equals("")){fc.set("ItemFile."+itemName+".VendorSellPrice", vSell);}
-		    	if(!rarity.equals("")){fc.set("ItemFile."+itemName+".Rarity", rarity);}
+		    	if(!rarity.equals("(none)")){fc.set("ItemFile."+itemName+".Rarity", rarity);}
 		    	if(!tier.equals("")){fc.set("ItemFile."+itemName+".Tier", tier);}
-		    	if(!skillReq1.equals("")){fc.set("ItemFile."+itemName+".SkillReq1", skillReq1);}
-		    	if(!skillReq2.equals("")){fc.set("ItemFile."+itemName+".SkillReq2", skillReq2);}
+		    	if(!skillReq1.equals("(none)")){fc.set("ItemFile."+itemName+".SkillReq1", skillReq1);}
+		    	if(!skillReq2.equals("(none)")){fc.set("ItemFile."+itemName+".SkillReq2", skillReq2);}
 		    	if(!skillReq1Lvl.equals("")){fc.set("ItemFile."+itemName+".SkillReq1Lvl", skillReq1Lvl);}
 		    	if(!skillReq2Lvl.equals("")){fc.set("ItemFile."+itemName+".SkillReq2Lvl", skillReq2Lvl);}
 		    }
