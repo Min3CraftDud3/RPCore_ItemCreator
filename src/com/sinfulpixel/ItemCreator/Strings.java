@@ -16,8 +16,9 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 public class Strings {
 	public static String[] stations = {"Leather Working", "Forge", "Campfire", "Anvil", "Stove", "Inventory", "Carpentry"};
-	public static String[] tools = {"Knife", "Forge Hammer", "Saw","(none)","Ingot Mold"};
-	public static String[] skills = {"Smithing","Smelting","(none)","Wood Crafting", "Leather Working"};
+	public static String[] tools = {"Knife", "Forge Hammer", "Saw","(none)","Ingot Mold","Cooking Utensils"};
+	public static String[] skills = {"Smithing","Smelting","(none)","Wood Crafting", "Leather Working", "Cooking"};
+	public static String[] category = {"Weapon","Armor","Crafting Material","Building Material","(Other)"};
 	public static String information = "Author: Brandon H\nCurrent Version: 1.0\nFor use with RP-Core Plugin.";
 	public static List<String> materials = new ArrayList<>();
 	@SuppressWarnings("rawtypes")
@@ -32,6 +33,7 @@ public class Strings {
 		Arrays.sort(stations);
 		Arrays.sort(tools);
 		Arrays.sort(skills);
+		Arrays.sort(category);
 	}
 	public static void createFile() throws IOException{
 		File ItemFile = new File("Items.yml");
@@ -67,6 +69,11 @@ public class Strings {
 		String tool = ItemCreator.cbToolReq.getSelectedItem().toString();
 		String skill = ItemCreator.cbSkill.getSelectedItem().toString();
 		String skillLevel = ItemCreator.txtSkillLevel.getText();
+		String category = ItemCreator.cbCat.getSelectedItem().toString();
+		String dmgMin = ItemCreator.txtDmgMin.getText();
+		String dmgMax = ItemCreator.txtDmgMax.getText();
+		String protMin = ItemCreator.txtProtMin.getText();
+		String protMax = ItemCreator.txtProtMax.getText();
 		//Save Operation
 		File ItemFile = new File("Items.yml");
 		if(ItemFile.exists()){
@@ -96,6 +103,11 @@ public class Strings {
 		    	if(!tool.equals("")){fc.set("ItemFile."+itemName+".Tool", tool);}
 		    	if(!skill.equals("")){fc.set("ItemFile."+itemName+".Skill", skill);}
 		    	if(!skillLevel.equals("")){fc.set("ItemFile."+itemName+".SkillLevel", skillLevel);}
+		    	if(!category.equals("")){fc.set("ItemFile."+itemName+".Category", category);}
+		    	if(!dmgMin.equals("")){fc.set("ItemFile."+itemName+".DmgMin", dmgMin);}
+		    	if(!dmgMax.equals("")){fc.set("ItemFile."+itemName+".DmgMax", dmgMax);}
+		    	if(!protMin.equals("")){fc.set("ItemFile."+itemName+".ProtMin", protMin);}
+		    	if(!protMin.equals("")){fc.set("ItemFile."+itemName+".ProtMax", protMax);}
 		    }
 		    fc.save(ItemFile);			
 		}
@@ -194,6 +206,26 @@ public class Strings {
 					String skillLevel = fc.getString("ItemFile."+s+".SkillLevel");
 					if(!skillLevel.equals("") && skillLevel != null){ItemCreator.txtSkillLevel.setText(skillLevel);}
 				}
+				if(fc.contains("ItemFile."+s+".Category")){
+					String category = fc.getString("ItemFile."+s+".Category");
+					if(!category.equals("") && category != null){ItemCreator.cbCat.setSelectedItem(category);}
+				}
+				if(fc.contains("ItemFile."+s+".DmgMin")){
+					String dmgMin = fc.getString("ItemFile."+s+".DmgMin");
+					if(!dmgMin.equals("") && dmgMin != null){ItemCreator.txtDmgMin.setText(dmgMin);}
+				}
+				if(fc.contains("ItemFile."+s+".DmgMax")){
+					String dmgMax = fc.getString("ItemFile."+s+".DmgMax");
+					if(!dmgMax.equals("") && dmgMax != null){ItemCreator.txtDmgMax.setText(dmgMax);}
+				}
+				if(fc.contains("ItemFile."+s+".ProtMin")){
+					String protMin = fc.getString("ItemFile."+s+".ProtMin");
+					if(!protMin.equals("") && protMin != null){ItemCreator.txtProtMin.setText(protMin);}
+				}
+				if(fc.contains("ItemFile."+s+".ProtMax")){
+					String protMax = fc.getString("ItemFile."+s+".ProtMax");
+					if(!protMax.equals("") && protMax != null){ItemCreator.txtProtMax.setText(protMax);}
+				}
 		    }
 		}
 	}
@@ -207,6 +239,7 @@ public class Strings {
 		ItemCreator.cbStation.setSelectedIndex(0);
 		ItemCreator.cbToolReq.setSelectedIndex(0);
 		ItemCreator.cbSkill.setSelectedIndex(0);
+		ItemCreator.cbCat.setSelectedIndex(0);
 		ItemCreator.txtDesc.setText(null);
 		ItemCreator.txtHigh.setText(null);
 		ItemCreator.txtLow.setText(null);
@@ -222,6 +255,10 @@ public class Strings {
 		ItemCreator.txtMat5Amnt.setText(null);
 		ItemCreator.txtMat5Name.setText(null);	
 		ItemCreator.txtSkillLevel.setText(null);
+		ItemCreator.txtDmgMin.setText(null);
+		ItemCreator.txtDmgMax.setText(null);
+		ItemCreator.txtProtMin.setText(null);
+		ItemCreator.txtProtMax.setText(null);
 	}
 	public static void deleteItem(String s)throws IOException{
 		File itemFile = new File("Items.yml");

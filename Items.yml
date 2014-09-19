@@ -1,1 +1,133 @@
-ItemFile: {}
+ItemFile:
+  Tanned Leather:
+    Name: Tanned Leather
+    Desc: A piece of tanned leather
+    Texture: LEATHER
+    Mat1: LEATHER
+    Mat1Name: LEATHER
+    Mat1Amnt: '1'
+    ChanceHigh: '5'
+    ChanceLow: '0'
+    WorkStation: Leather Working
+    Tool: Knife
+    Skill: Leather Working
+    SkillLevel: '1'
+  Leather Strips:
+    Name: Leather Strips
+    Desc: Small strips of leather
+    Texture: STRING
+    Mat1: LEATHER
+    Mat1Name: Tanned Leather
+    Mat1Amnt: '1'
+    ChanceHigh: '5'
+    ChanceLow: '0'
+    WorkStation: Leather Working
+    Tool: Knife
+    Skill: Leather Working
+    SkillLevel: '1'
+  Molten Iron:
+    Name: Molten Iron
+    Desc: A bucket of molten iron
+    Texture: LAVA_BUCKET
+    Mat1: IRON_ORE
+    Mat1Name: IRON_ORE
+    Mat1Amnt: '2'
+    Mat2: COAL
+    Mat2Name: COAL
+    Mat2Amnt: '1'
+    ChanceHigh: '5'
+    ChanceLow: '0'
+    WorkStation: Forge
+    Tool: (none)
+    Skill: Smelting
+    SkillLevel: '10'
+  Molten Bronze:
+    Name: Molten Bronze
+    Desc: A bucket of molten bronze
+    Texture: LAVA_BUCKET
+    Mat1: IRON_ORE
+    Mat1Name: Tin Ore
+    Mat1Amnt: '1'
+    Mat2: GOLD_ORE
+    Mat2Name: Copper Ore
+    Mat2Amnt: '2'
+    Mat3: COAL
+    Mat3Name: COAL
+    Mat3Amnt: '1'
+    ChanceHigh: '5'
+    ChanceLow: '0'
+    WorkStation: Forge
+    Tool: (none)
+    Skill: Smelting
+    SkillLevel: '1'
+  Molten Tin:
+    Name: Molten Tin
+    Desc: A bucket of molten tin
+    Texture: LAVA_BUCKET
+    Mat1: IRON_ORE
+    Mat1Name: Tin Ore
+    Mat1Amnt: '2'
+    Mat2: COAL
+    Mat2Name: COAL
+    Mat2Amnt: '1'
+    ChanceHigh: '5'
+    ChanceLow: '0'
+    WorkStation: Forge
+    Tool: (none)
+    Skill: Smelting
+    SkillLevel: '1'
+  Iron Ingot:
+    Name: Iron Ingot
+    Desc: An ingot made of iron
+    Texture: IRON_INGOT
+    Mat1: LAVA_BUCKET
+    Mat1Name: Molten Iron
+    Mat1Amnt: '1'
+    ChanceHigh: '5'
+    ChanceLow: '0'
+    WorkStation: Forge
+    Tool: Ingot Mold
+    Skill: Smelting
+    SkillLevel: '10'
+  Tin Ingot:
+    Name: Tin Ingot
+    Desc: An ingot made of tin
+    Texture: IRON_INGOT
+    Mat1: LAVA_BUCKET
+    Mat1Name: Molten Tin
+    Mat1Amnt: '1'
+    ChanceHigh: '5'
+    ChanceLow: '0'
+    WorkStation: Forge
+    Tool: Ingot Mold
+    Skill: Smelting
+    SkillLevel: '1'
+  Bronze Ingot:
+    Name: Bronze Ingot
+    Desc: An ingot made of bronze
+    Texture: GOLD_INGOT
+    Mat1: LAVA_BUCKET
+    Mat1Name: Molten Bronze
+    Mat1Amnt: '1'
+    ChanceHigh: '5'
+    ChanceLow: '0'
+    WorkStation: Forge
+    Tool: Ingot Mold
+    Skill: Smelting
+    SkillLevel: '5'
+  Molten Copper:
+    Name: Molten Copper
+    Desc: A bucket of molten copper
+    Texture: LAVA_BUCKET
+    Mat1: GOLD_INGOT
+    Mat1Name: Copper Ore
+    Mat1Amnt: '2'
+    Mat2: COAL
+    Mat2Name: COAL
+    Mat2Amnt: '1'
+    ChanceHigh: '5'
+    ChanceLow: '0'
+    WorkStation: Forge
+    Tool: (none)
+    Skill: Smelting
+    SkillLevel: '1'
